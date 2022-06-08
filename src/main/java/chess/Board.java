@@ -7,51 +7,88 @@ public class Board {
     private final ArrayList<Piece> arrayList;
     private final ArrayList<Piece> secondRank;
     private final ArrayList<Piece> SeventhRank;
-    private final String dot = ".......";
+    private final ArrayList<Piece> firstRank;
+    private final ArrayList<Piece> rank8;
+    private final String dot = "........";
     public Board (){
         this.Number = 0;
-        this.arrayList = Piece ArrayList<>();
-        this.secondRank = Piece ArrayList<>();
-        this.SeventhRank = Piece ArrayList<>();
+        this.arrayList = new  ArrayList<>();
+        this.secondRank = new  ArrayList<>();
+        this.SeventhRank = new   ArrayList<>();
+        this.firstRank = new ArrayList<>();
+        this.rank8 = new ArrayList<>();
     }
     public int getNumberOfPieces(){
-        return secondRank.size() + SeventhRank.size();
+        return secondRank.size() + SeventhRank.size() + rank8.size() + firstRank.size();
     }
-    public int incrementCount(){
-        return Number;
-    }
+//    public int incrementCount(){
+//        return Number;
+//    }
     //    public Pawn getPieces(int index ){
 //        return arrayList.get(index);
 //    }
     public void initialize(){
-        secondRank.add(Piece.createWhitePawn(Piece.WHITE, Piece.WHITE_PAWN_NAME, 'p'));
-        secondRank.add(Piece.createBlackPawn(Piece.WHITE, 'p'));
-        secondRank.add(Piece(WHITE, 'p'));
-        secondRank.add(Piece (WHITE, 'p'));
-        secondRank.add(Piece (WHITE, 'p'));
-        secondRank.add(Piece (WHITE, 'p'));
-        secondRank.add(Piece (WHITE, 'p'));
-        secondRank.add(Piece (WHITE, 'p'));
-        SeventhRank.add(Piece ("Black", 'P'));
-        SeventhRank.add(Piece ("Black", 'P'));
-        SeventhRank.add(Piece ("Black", 'P'));
-        SeventhRank.add(Piece ("Black", 'P'));
-        SeventhRank.add(Piece ("Black", 'P'));
-        SeventhRank.add(Piece ("Black", 'P'));
-        SeventhRank.add(Piece ("Black", 'P'));
-        SeventhRank.add(Piece ("Black", 'P'));
+        firstRank.add(Piece.createWhiteRook());
+        firstRank.add(Piece.createWhiteKnight());
+        firstRank.add(Piece.createWhiteBishop());
+        firstRank.add(Piece.createWhiteQueen());
+        firstRank.add(Piece.createWhiteKing());
+        firstRank.add(Piece.createWhiteBishop());
+        firstRank.add(Piece.createWhiteKnight());
+        firstRank.add(Piece.createWhiteRook());
+
+        secondRank.add(Piece.createWhitePawn());
+        secondRank.add(Piece.createWhitePawn());
+        secondRank.add(Piece.createWhitePawn());
+        secondRank.add(Piece.createWhitePawn());
+        secondRank.add(Piece.createWhitePawn());
+        secondRank.add(Piece.createWhitePawn());
+        secondRank.add(Piece.createWhitePawn());
+        secondRank.add(Piece.createWhitePawn());
+
+        SeventhRank.add(Piece.createBlackPawn());
+        SeventhRank.add(Piece.createBlackPawn());
+        SeventhRank.add(Piece.createBlackPawn());
+        SeventhRank.add(Piece.createBlackPawn());
+        SeventhRank.add(Piece.createBlackPawn());
+        SeventhRank.add(Piece.createBlackPawn());
+        SeventhRank.add(Piece.createBlackPawn());
+        SeventhRank.add(Piece.createBlackPawn());
+
+        rank8.add(Piece.createBlackRook());
+        rank8.add(Piece.createBlackKnight());
+        rank8.add(Piece.createBlackBishop());
+        rank8.add(Piece.createBlackQueen());
+        rank8.add(Piece.createBlackKing());
+        rank8.add(Piece.createBlackBishop());
+        rank8.add(Piece.createBlackKnight());
+        rank8.add(Piece.createBlackRook());
+    }
+    public String firstRankRepresentation(){
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < firstRank.size(); i++) {
+            buffer.append(firstRank.get(i).getRepresentation());
+        }
+        return buffer.toString();
     }
     public String secondRankRepresentation(){
-        StringBuilder buffer = Piece StringBuilder();
+        StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < secondRank.size(); i++) {
             buffer.append(secondRank.get(i).getRepresentation());
         }
         return buffer.toString();
     }
     public String seventhRankRepresentation(){
-        StringBuilder buffer = Piece StringBuilder();
+        StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < SeventhRank.size(); i++) {
             buffer.append(SeventhRank.get(i).getRepresentation());
+        }
+        return buffer.toString();
+    }
+    public String rank8Representation(){
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < rank8.size() ; i++) {
+            buffer.append(rank8.get(i).getRepresentation());
         }
         return buffer.toString();
     }
@@ -70,22 +107,18 @@ public class Board {
 //                        emptyRepresentation();
 //    }
     public String anotherPrintBoardSolution(){
-        StringBuilder buffer = Piece StringBuilder();
-        buffer.append(emptyRepresentation());
-        buffer.append(StringUtil.PieceLINE);
-        buffer.append(seventhRankRepresentation());
-        buffer.append(StringUtil.PieceLINE);
-        buffer.append(emptyRepresentation());
-        buffer.append(StringUtil.PieceLINE);
-        buffer.append(emptyRepresentation());
-        buffer.append(StringUtil.PieceLINE);
-        buffer.append(emptyRepresentation());
-        buffer.append(StringUtil.PieceLINE);
-        buffer.append(emptyRepresentation());
-        buffer.append(StringUtil.PieceLINE);
-        buffer.append(secondRankRepresentation());
-        buffer.append(StringUtil.PieceLINE);
-        buffer.append(emptyRepresentation());
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(StringUtil.appendNewLine(rank8Representation()));
+        buffer.append(StringUtil.appendNewLine(seventhRankRepresentation()));
+        buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
+        buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
+        buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
+        buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
+        buffer.append(StringUtil.appendNewLine(secondRankRepresentation()));
+        buffer.append(StringUtil.appendNewLine(firstRankRepresentation()));
         return buffer.toString();
     }
+//    public int pieceCount(){
+//
+//    }
 }

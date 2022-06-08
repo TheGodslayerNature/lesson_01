@@ -1,24 +1,17 @@
 import chess.pieces.Piece;
 import org.junit.Test;
-import org.junit.Before;
 import static org.junit.Assert.assertEquals;
 
 public class testPiece {
-    @Before
-    public void setUp(){
-//        Pawn = new Piece("","",'');
-//        Knight = new Piece("", "P",'');
-//        Rook = new Piece("", "P",'');
-//        Bishop = new Piece("", "P",'');
-//        Queen = new Piece("", "", '');
-//        King = new Piece("", "", '');
-    }
     @Test
-    public void pawnTest(){
-        assertEquals("White", whitePawn.getColor());
-        assertEquals('p', whitePawn.getRepresentation());
+    public void pieceTest(){
+        Piece pawn = Piece.createWhitePawn();
+        assertEquals('p', pawn.getRepresentation());
 
-        assertEquals("Black", blackPawn.getColor());
-        assertEquals('P', blackPawn.getRepresentation());
+        Piece blackPawn = Piece.createBlackPawn();
+        assertEquals('P',blackPawn.getRepresentation());
+
+        Piece rook = Piece.createWhiteRook();
+        assertEquals('r', rook.getRepresentation());
     }
 }

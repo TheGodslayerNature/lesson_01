@@ -11,19 +11,18 @@ public class TestBoard {
         board = new Board();
     }
     @Test
-    public void testCreateInitialBoardVersionRemastered(){
+    public void testCreate() {
         board.initialize();
         assertEquals(32, board.getNumberOfPieces());
-        assertEquals("......." + StringUtil.NEWLINE +
-                "PPPPPPPP"+ StringUtil.NEWLINE +
-                "......." + StringUtil.NEWLINE +
-                "......." + StringUtil.NEWLINE +
-                "......." + StringUtil.NEWLINE +
-                "......." + StringUtil.NEWLINE +
-                "pppppppp" + StringUtil.NEWLINE +
-                "......." , board.anotherPrintBoardSolution());
+        String blankRank = StringUtil.appendNewLine("........");
+        assertEquals(
+                StringUtil.appendNewLine("RNBQKBNR") +
+                        StringUtil.appendNewLine("PPPPPPPP") +
+                        blankRank + blankRank + blankRank + blankRank +
+                        StringUtil.appendNewLine("pppppppp") +
+                        StringUtil.appendNewLine("rnbqkbnr"),
+                board.anotherPrintBoardSolution());
         System.out.println(board.anotherPrintBoardSolution());
-        System.out.println(board.getNumberOfPieces());
     }
     //    @Test
 //    public void testCreateInitialBoard(){
@@ -47,9 +46,9 @@ public class TestBoard {
 //        assertEquals("PPPPPPPP", board.seventhRankRepresentation());
     }
 
-    @Test
-    public void testCountPieces() {
-        board.incrementCount();
-        assertEquals(0,board.getNumberOfPieces());
-    }
+//    @Test
+//    public void testCountPieces() {
+//        board.incrementCount();
+//        assertEquals(0,board.getNumberOfPieces());
+//    }
 }
