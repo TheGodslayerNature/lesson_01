@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chess/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/chess/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/StringUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AllTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AllTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/testPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testPiece.java" afterDir="false" />
     </list>
@@ -49,11 +47,11 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestBoard.testCreate">
-    <configuration name="AllTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.testPiece.pieceTest">
+    <configuration name="TestBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="untitled" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="AllTests" />
+      <option name="MAIN_CLASS_NAME" value="TestBoard" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -79,11 +77,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testPiece.pawnTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="testPiece.pieceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="untitled" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="testPiece" />
-      <option name="METHOD_NAME" value="pawnTest" />
+      <option name="METHOD_NAME" value="pieceTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -101,11 +99,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.testPiece.pieceTest" />
         <item itemvalue="JUnit.TestBoard.testCreate" />
+        <item itemvalue="JUnit.TestBoard" />
         <item itemvalue="JUnit.TestBoard.testCreateInitialBoardVersionRemastered" />
         <item itemvalue="JUnit.testPiece.testPiece" />
-        <item itemvalue="JUnit.testPiece.pawnTest" />
-        <item itemvalue="JUnit.AllTests" />
       </list>
     </recent_temporary>
   </component>
@@ -125,11 +123,19 @@
       <option name="project" value="LOCAL" />
       <updated>1654614986047</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="peças foram adicionadas ao tabuleiro.&#10;Version - 2.8.9">
+      <created>1654702320452</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654702320453</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Começo da Terceira lição.&#10;Version - 2.6.9" />
-    <option name="LAST_COMMIT_MESSAGE" value="Começo da Terceira lição.&#10;Version - 2.6.9" />
+    <MESSAGE value="peças foram adicionadas ao tabuleiro.&#10;Version - 2.8.9" />
+    <option name="LAST_COMMIT_MESSAGE" value="peças foram adicionadas ao tabuleiro.&#10;Version - 2.8.9" />
   </component>
 </project>
