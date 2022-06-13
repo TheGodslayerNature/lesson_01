@@ -1,3 +1,5 @@
+package chess;
+
 import chess.Board;
 import chess.pieces.Piece;
 import org.junit.Before;
@@ -13,7 +15,7 @@ public class TestBoard {
     }
     @Test
     public void testCreate() {
-        System.out.println(Piece.getWhiteCounter());
+        Piece.resetCounter();
         board.initialize();
         assertEquals(32, board.getNumberOfAllPieces());
         String blankRank = StringUtil.appendNewLine("........");
@@ -30,7 +32,6 @@ public class TestBoard {
         System.out.println(Piece.getWhiteCounter());
         System.out.println(Piece.getBlackCounter());
         Piece.resetCounter();
-        System.out.println(Piece.getBlackCounter());
     }
     //    @Test
 //    public void testCreateInitialBoard(){

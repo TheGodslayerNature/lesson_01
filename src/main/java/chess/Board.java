@@ -3,18 +3,14 @@ import chess.pieces.Piece;
 import java.util.ArrayList;
 import util.StringUtil;
 public class Board {
-    private int countW;
-    private int countB;
-    private final ArrayList<Piece> arrayList;
     private final ArrayList<Piece> secondRank;
     private final ArrayList<Piece> seventhRank;
     private final ArrayList<Piece> firstRank;
     private final ArrayList<Piece> eightRank;
     private final String dot = "........";
     public Board (){
-        this.arrayList = new  ArrayList<>();
         this.secondRank = new  ArrayList<>();
-        this.seventhRank = new   ArrayList<>();
+        this.seventhRank = new ArrayList<>();
         this.firstRank = new ArrayList<>();
         this.eightRank = new ArrayList<>();
     }
@@ -102,4 +98,7 @@ public class Board {
         return buffer.toString();
     }
 
+//    public int getNumberOfPiecesByColorAndType(){
+//
+//    }
 }

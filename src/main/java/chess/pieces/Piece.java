@@ -1,73 +1,80 @@
 package chess.pieces;
 
 public class Piece {
-    private final String color;
-    private final String name;
-    public static String WHITE = "white";
-    public static String BLACK = "black";
-    public static String PIECE_PAWN = "Pawn";
-    public static String PIECE_ROOK = "Rook";
-    public static String PIECE_KNIGHT = "Knight";
-    public static String PIECE_BISHOP = "Bishop";
-    public static String PIECE_QUEEN = "Queen";
-    public static String PIECE_KING = "King";
+    public static final char PAWN_REPRESENTATION = 'p';
+    public static final char ROOK_REPRESENTATION = 'r';
+    public static final char KNIGHT_REPRESENTATION = 'n';
+    public static final char BISHOP_REPRESENTATION = 'b';
+    public static final char QUEEN_REPRESENTATION = 'q';
+    public static final char KING_REPRESENTATION = 'k';
+    public static final char NO_PIECE_REPRESENTATION = '.';
     private final char representation;
     private static int countWhite;
     private static int countBlack;
-    private Piece(String color,String name, char representation) {
+    public enum Pieces{PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING, NO_PIECE}
+    private Pieces name;
+    private enum Colors {WHITE, BLACK, NO_COLOR}
+    private final Colors color;
+    private Piece(Colors color, Pieces name, char representation) {
         this.color = color;
         this.name = name;
         this.representation = representation;
     }
+    public static Piece noPiece(){
+        return new Piece(Colors.NO_COLOR, Pieces.NO_PIECE, NO_PIECE_REPRESENTATION);
+    }
+    public Pieces getType(){
+        return name;
+    }
     public static Piece createWhitePawn(){
-        return  Piece.createWhitePiece( PIECE_PAWN, 'p');
+        return  Piece.createWhitePiece( Pieces.PAWN, 'p');
     }
     public static Piece createBlackPawn(){
-        return  Piece.createBlackPiece( PIECE_PAWN, 'p');
+        return  Piece.createBlackPiece( Pieces.PAWN, 'p');
     }
     public static Piece createWhiteRook(){
-        return  Piece.createWhitePiece( PIECE_ROOK, 'r');
+        return  Piece.createWhitePiece( Pieces.ROOK, 'r');
     }
     public static Piece createBlackRook(){
-        return  Piece.createBlackPiece( PIECE_ROOK, 'r');
+        return  Piece.createBlackPiece( Pieces.ROOK, 'r');
     }
     public static Piece createWhiteKnight(){
-        return  Piece.createWhitePiece( PIECE_KNIGHT, 'n');
+        return  Piece.createWhitePiece( Pieces.KNIGHT, 'n');
     }
     public static Piece createBlackKnight(){
-        return  Piece.createBlackPiece( PIECE_KNIGHT, 'n');
+        return  Piece.createBlackPiece( Pieces.KNIGHT, 'n');
     }
     public static Piece createWhiteBishop(){
-        return  Piece.createWhitePiece( PIECE_BISHOP, 'b');
+        return  Piece.createWhitePiece( Pieces.BISHOP, 'b');
     }
     public static Piece createBlackBishop(){
-        return Piece.createBlackPiece( PIECE_BISHOP, 'b');
+        return Piece.createBlackPiece( Pieces.BISHOP, 'b');
     }
     public static Piece createWhiteQueen(){
-        return  Piece.createWhitePiece( PIECE_QUEEN, 'q');
+        return  Piece.createWhitePiece( Pieces.QUEEN, 'q');
     }
     public static Piece createBlackQueen(){
-        return  Piece.createBlackPiece( PIECE_QUEEN, 'q');
+        return  Piece.createBlackPiece( Pieces.QUEEN, 'q');
     }
     public static Piece createWhiteKing(){
-        return  Piece.createWhitePiece(PIECE_KING, 'k');
+        return  Piece.createWhitePiece( Pieces.KING, 'k');
     }
     public static Piece createBlackKing(){
-        return  Piece.createBlackPiece( PIECE_KING, 'K');
+        return  Piece.createBlackPiece( Pieces.KING, 'K');
     }
     public char getRepresentation() {
-        if (color.equals(BLACK)) {
+        if (color.equals(Colors.BLACK)) {
             return Character.toUpperCase(representation);
         }
         return representation;
     }
-    private static Piece createWhitePiece(String name, char representation){
+    private static Piece createWhitePiece(Pieces name, char representation){
         incrementWhitePiece();
-        return new Piece(WHITE, name, representation);
+        return new Piece(Colors.WHITE, name, representation);
     }
-    private static Piece createBlackPiece(String name, char representation){
+    private static Piece createBlackPiece(Pieces name, char representation){
         incrementBlackPiece();
-        return new Piece(BLACK, name, representation);
+        return new Piece(Colors.BLACK, name, representation);
     }
     private static int incrementWhitePiece(){
         return ++countWhite;
@@ -76,23 +83,23 @@ public class Piece {
         return ++countBlack;
     }
     public static int getBlackCounter(){
-        return countWhite;
+        return countBlack;
     }
     public static int getWhiteCounter(){
-        return countBlack;
+        return countWhite;
     }
     public static void resetCounter(){
         countWhite = 0;
         countBlack = 0;
     }
     public boolean isWhite(){
-        if (color == WHITE){
+        if (color == Colors.WHITE){
             return true;
         }
         else return false;
     }
     public boolean isBlack(){
-        if (color == BLACK){
+        if (color == Colors.BLACK){
             return true;
         }
         else return false;
