@@ -3,15 +3,23 @@ import chess.pieces.Piece;
 import java.util.ArrayList;
 import util.StringUtil;
 public class Board {
-    private final ArrayList<Piece> secondRank;
-    private final ArrayList<Piece> seventhRank;
     private final ArrayList<Piece> firstRank;
+    private final ArrayList<Piece> secondRank;
+    private final ArrayList<Piece> thirdRank;
+    private final ArrayList<Piece> fourthRank;
+    private final ArrayList<Piece> fiveRank;
+    private final ArrayList<Piece> sixRank;
+    private final ArrayList<Piece> seventhRank;
     private final ArrayList<Piece> eightRank;
     private final String dot = "........";
     public Board (){
-        this.secondRank = new  ArrayList<>();
-        this.seventhRank = new ArrayList<>();
         this.firstRank = new ArrayList<>();
+        this.secondRank = new  ArrayList<>();
+        this.thirdRank = new ArrayList<>();
+        this.fourthRank = new ArrayList<>();
+        this.fiveRank = new ArrayList<>();
+        this.sixRank = new ArrayList<>();
+        this.seventhRank = new ArrayList<>();
         this.eightRank = new ArrayList<>();
     }
     public int getNumberOfAllPieces(){
@@ -35,6 +43,42 @@ public class Board {
         secondRank.add(Piece.createWhitePawn());
         secondRank.add(Piece.createWhitePawn());
         secondRank.add(Piece.createWhitePawn());
+
+        thirdRank.add(Piece.noPiece());
+        thirdRank.add(Piece.noPiece());
+        thirdRank.add(Piece.noPiece());
+        thirdRank.add(Piece.noPiece());
+        thirdRank.add(Piece.noPiece());
+        thirdRank.add(Piece.noPiece());
+        thirdRank.add(Piece.noPiece());
+        thirdRank.add(Piece.noPiece());
+
+        fourthRank.add(Piece.noPiece());
+        fourthRank.add(Piece.noPiece());
+        fourthRank.add(Piece.noPiece());
+        fourthRank.add(Piece.noPiece());
+        fourthRank.add(Piece.noPiece());
+        fourthRank.add(Piece.noPiece());
+        fourthRank.add(Piece.noPiece());
+        fourthRank.add(Piece.noPiece());
+
+        fiveRank.add(Piece.noPiece());
+        fiveRank.add(Piece.noPiece());
+        fiveRank.add(Piece.noPiece());
+        fiveRank.add(Piece.noPiece());
+        fiveRank.add(Piece.noPiece());
+        fiveRank.add(Piece.noPiece());
+        fiveRank.add(Piece.noPiece());
+        fiveRank.add(Piece.noPiece());
+
+        sixRank.add(Piece.noPiece());
+        sixRank.add(Piece.noPiece());
+        sixRank.add(Piece.noPiece());
+        sixRank.add(Piece.noPiece());
+        sixRank.add(Piece.noPiece());
+        sixRank.add(Piece.noPiece());
+        sixRank.add(Piece.noPiece());
+        sixRank.add(Piece.noPiece());
 
         seventhRank.add(Piece.createBlackPawn());
         seventhRank.add(Piece.createBlackPawn());
@@ -97,8 +141,24 @@ public class Board {
         buffer.append(StringUtil.appendNewLine(firstRankRepresentation()));
         return buffer.toString();
     }
+    public void pieceType(){
 
-//    public int getNumberOfPiecesByColorAndType(){
-//
+    }
+//    public String typePiece(){
+//        if (firstRankRepresentation() == firstRankRepresentation().toUpperCase()){
+//            return firstRankRepresentation().toUpperCase();
+//        }
+//        return firstRankRepresentation();
 //    }
+
+    public int pieceCount(char representation) {
+        if (firstRank.get(0).getRepresentation() == representation){
+            return representation + 1;
+        }
+        return representation;
+    }
+//    public int demandCount(int representation){
+//        return  ++representation;
+//    }
+
 }

@@ -22,6 +22,7 @@ public class TestPiece {
 
         Piece bishop = Piece.createBlackBishop();
         assertEquals('B', bishop.getRepresentation());
+        Piece bishop2 = Piece.createBlackBishop();
 
     }
 

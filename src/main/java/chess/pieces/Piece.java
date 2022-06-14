@@ -11,6 +11,7 @@ public class Piece {
     private final char representation;
     private static int countWhite;
     private static int countBlack;
+    private static int countPawn;
     public enum Pieces{PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING, NO_PIECE}
     private Pieces name;
     private enum Colors {WHITE, BLACK, NO_COLOR}
@@ -19,6 +20,9 @@ public class Piece {
         this.color = color;
         this.name = name;
         this.representation = representation;
+    }
+    public Pieces getName(){
+        return name;
     }
     public static Piece noPiece(){
         return new Piece(Colors.NO_COLOR, Pieces.NO_PIECE, NO_PIECE_REPRESENTATION);
