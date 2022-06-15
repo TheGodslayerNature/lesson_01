@@ -11,7 +11,6 @@ public class Piece {
     private final char representation;
     private static int countWhite;
     private static int countBlack;
-    private static int countPawn;
     public enum Pieces{PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING, NO_PIECE}
     private Pieces name;
     private enum Colors {WHITE, BLACK, NO_COLOR}

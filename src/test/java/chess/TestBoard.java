@@ -26,38 +26,33 @@ public class TestBoard {
                         StringUtil.appendNewLine("pppppppp") +
                         StringUtil.appendNewLine("rnbqkbnr"),
                 board.anotherPrintBoardSolution());
-//        assertEquals(16, Piece.getWhiteCounter());
-//        assertEquals(16, Piece.getBlackCounter());
         System.out.println(board.anotherPrintBoardSolution());
-//        System.out.println(Piece.getWhiteCounter());
-//        System.out.println(Piece.getBlackCounter());
+        System.out.println();
+
         Piece.resetCounter();
     }
-    //    @Test
-//    public void testCreateInitialBoard(){
-//        board.initialize();
-//        assertEquals("......." + Board.NEWLINE +
-//                "PPPPPPPP"+ Board.NEWLINE +
-//                "......." + Board.NEWLINE +
-//                "......." + Board.NEWLINE +
-//                "......." + Board.NEWLINE +
-//                "......." + Board.NEWLINE +
-//                "pppppppp"+ Board.NEWLINE +
-//                "......." , board.printBoard());
-//        System.out.println(board.printBoard());
-//    }
-//    @Test
-//    public void testCreateBoard(){
-//        assertEquals(0,board.getNumberOfAllPieces());
-//        board.initialize();
-//        assertEquals("pppppppp", board.secondRankRepresentation());
-//        assertEquals(".......", board.emptyRepresentation());
-//        assertEquals("PPPPPPPP", board.seventhRankRepresentation());
-//    }
+    @Test
+    public void testNumberOfPiecesByRepresentation(){
+        board.initialize();
+        assertEquals(2, board.pieceCount('r'));
+        assertEquals(2, board.pieceCount('n'));
+        assertEquals(2 , board.pieceCount('b'));
+        assertEquals(1, board.pieceCount('q'));
+        assertEquals(1, board.pieceCount('k'));
 
-//    @Test
-//    public void testCountPieces() {
-//        board.incrementCount();
-//        assertEquals(0,board.getNumberOfPieces());
-//    }
+        assertEquals(8, board.pieceCount('p'));
+
+        assertEquals(8, board.pieceCount('P'));
+
+        assertEquals(2, board.pieceCount('R'));
+        assertEquals(2, board.pieceCount('N'));
+        assertEquals(2, board.pieceCount('B'));
+        assertEquals(1, board.pieceCount('Q'));
+        assertEquals(1, board.pieceCount('K'));
+        Piece.resetCounter();
+    }
+    @Test
+    public void testRetrievePieceByLocation(){
+        assertEquals('R', board.getPiece("a8").getRepresentation());
+    }
 }

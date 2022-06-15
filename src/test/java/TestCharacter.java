@@ -3,6 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class TestCharacter {
+
     @Test
     public void testWhiteSpace(){
         assertEquals(true,Character.isWhitespace('\n'));

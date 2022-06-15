@@ -12,6 +12,7 @@ public class Board {
     private final ArrayList<Piece> seventhRank;
     private final ArrayList<Piece> eightRank;
     private final String dot = "........";
+
     public Board (){
         this.firstRank = new ArrayList<>();
         this.secondRank = new  ArrayList<>();
@@ -22,6 +23,7 @@ public class Board {
         this.seventhRank = new ArrayList<>();
         this.eightRank = new ArrayList<>();
     }
+
     public int getNumberOfAllPieces(){
         return secondRank.size() + seventhRank.size() + eightRank.size() + firstRank.size();
     }
@@ -152,13 +154,54 @@ public class Board {
 //    }
 
     public int pieceCount(char representation) {
-        if (firstRank.get(0).getRepresentation() == representation){
-            return representation + 1;
+        int count = 0;
+        for (Piece knight: firstRank){
+            if (knight.getRepresentation() == representation){
+                count++;
+            }
         }
-        return representation;
+        for (Piece piece: secondRank){
+            if (piece.getRepresentation() == representation){
+                count++;
+            }
+        }
+        for (Piece piece: thirdRank){
+            if (piece.getRepresentation() == representation){
+                count++;
+            }
+        }
+        for (Piece piece: fourthRank){
+            if (piece.getRepresentation() == representation){
+                count++;
+            }
+        }
+        for (Piece piece: fiveRank){
+            if (piece.getRepresentation() == representation){
+                count++;
+            }
+        }
+        for (Piece piece: sixRank){
+            if (piece.getRepresentation() == representation){
+                count++;
+            }
+        }
+        for (Piece piece: seventhRank){
+            if (piece.getRepresentation() == representation){
+                count++;
+            }
+        }
+        for (Piece piece: eightRank){
+            if (piece.getRepresentation() == representation){
+                count++;
+            }
+        }
+        return count;
     }
-//    public int demandCount(int representation){
-//        return  ++representation;
-//    }
 
+//    public Piece getPiece(String position) {
+//
+//    }
+//    public void placePiece(){
+//
+//    }
 }
