@@ -143,15 +143,6 @@ public class Board {
         buffer.append(StringUtil.appendNewLine(firstRankRepresentation()));
         return buffer.toString();
     }
-    public void pieceType(){
-
-    }
-//    public String typePiece(){
-//        if (firstRankRepresentation() == firstRankRepresentation().toUpperCase()){
-//            return firstRankRepresentation().toUpperCase();
-//        }
-//        return firstRankRepresentation();
-//    }
 
     public int pieceCount(char representation) {
         int count = 0;
@@ -197,9 +188,42 @@ public class Board {
         }
         return count;
     }
+    public Piece getPiece(String position){
+        char file = position.charAt(0);
+        char numeric = position.charAt(1);
 
-//    public Piece getPiece(String position) {
-//
+        int charRepresentation = 'a';
+        if (charRepresentation <= 'h'){
+            charRepresentation++;
+        }
+
+        int numericRepresentation = 1;
+        if (numericRepresentation <= 8){
+            numericRepresentation++;
+        }
+
+        int sum = charRepresentation + numericRepresentation;
+        
+
+        return null;
+    }
+//    public String getPiece(String position) {
+//        String files = "abcdefgh";
+//        if (eightRank.get(8) = files.charAt(0)){
+//            position = "a8";
+//        } return position;
+//    }
+//    public String getNumericColum(){
+//        String numeric = "12345678";
+//        return numeric;
+//    }
+//    public String getLine(){
+//        String line = "abcdefgh";
+//        return line;
+//    }
+////    public char testPositionPiece(String position) {
+//        position = "abcdefgh";
+//        return position.charAt(2);
 //    }
 //    public void placePiece(){
 //

@@ -53,6 +53,10 @@ public class TestBoard {
     }
     @Test
     public void testRetrievePieceByLocation(){
+        System.out.println();
         assertEquals('R', board.getPiece("a8").getRepresentation());
+//        assertEquals('c', board.testPositionPiece("c"));
+//        System.out.println(board.testPositionPiece("a"));
+
     }
 }
