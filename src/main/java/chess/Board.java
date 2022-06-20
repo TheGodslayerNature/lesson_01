@@ -114,6 +114,34 @@ public class Board {
         }
         return buffer.toString();
     }
+    public String thirdRankRepresentation(){
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < thirdRank.size(); i++) {
+            buffer.append(thirdRank.get(i).getRepresentation());
+        }
+        return buffer.toString();
+    }
+    public String fourthRankRepresentation(){
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < fourthRank.size(); i++) {
+            buffer.append(fourthRank.get(i).getRepresentation());
+        }
+        return buffer.toString();
+    }
+    public String fiveRankRepresentation(){
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < fiveRank.size(); i++) {
+            buffer.append(fiveRank.get(i).getRepresentation());
+        }
+        return buffer.toString();
+    }
+    public String sixRankRepresentation(){
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < sixRank.size(); i++) {
+            buffer.append(sixRank.get(i).getRepresentation());
+        }
+        return buffer.toString();
+    }
     public String seventhRankRepresentation(){
         StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < seventhRank.size(); i++) {
@@ -139,6 +167,18 @@ public class Board {
         buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
         buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
         buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
+        buffer.append(StringUtil.appendNewLine(secondRankRepresentation()));
+        buffer.append(StringUtil.appendNewLine(firstRankRepresentation()));
+        return buffer.toString();
+    }
+    public String printBoardWithoutPieces(){
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(StringUtil.appendNewLine(rank8Representation()));
+        buffer.append(StringUtil.appendNewLine(seventhRankRepresentation()));
+        buffer.append(StringUtil.appendNewLine(sixRankRepresentation()));
+        buffer.append(StringUtil.appendNewLine(fiveRankRepresentation()));
+        buffer.append(StringUtil.appendNewLine(fourthRankRepresentation()));
+        buffer.append(StringUtil.appendNewLine(thirdRankRepresentation()));
         buffer.append(StringUtil.appendNewLine(secondRankRepresentation()));
         buffer.append(StringUtil.appendNewLine(firstRankRepresentation()));
         return buffer.toString();
@@ -190,42 +230,114 @@ public class Board {
     }
     public Piece getPiece(String position){
         char file = position.charAt(0);
-        char numeric = position.charAt(1);
+        char rank = position.charAt(1);
 
-        int charRepresentation = 'a';
-        if (charRepresentation <= 'h'){
-            charRepresentation++;
+        file -= 'a';
+
+        if (rank == '1'){
+            return firstRank.get(file);
         }
-
-        int numericRepresentation = 1;
-        if (numericRepresentation <= 8){
-            numericRepresentation++;
+        else if (rank == '2'){
+            return secondRank.get(file);
         }
-
-        int sum = charRepresentation + numericRepresentation;
-        
-
-        return null;
+        else if (rank == '3'){
+            return thirdRank.get(file);
+        }
+        else if (rank == '4'){
+            return fourthRank.get(file);
+        }
+        else if (rank == '5') {
+            return fiveRank.get(file);
+        }
+        else if (rank == '6'){
+            return sixRank.get(file);
+        }
+        else if (rank == '7'){
+            return seventhRank.get(file);
+        }
+        else
+            return eightRank.get(file);
     }
-//    public String getPiece(String position) {
-//        String files = "abcdefgh";
-//        if (eightRank.get(8) = files.charAt(0)){
-//            position = "a8";
-//        } return position;
-//    }
-//    public String getNumericColum(){
-//        String numeric = "12345678";
-//        return numeric;
-//    }
-//    public String getLine(){
-//        String line = "abcdefgh";
-//        return line;
-//    }
-////    public char testPositionPiece(String position) {
-//        position = "abcdefgh";
-//        return position.charAt(2);
-//    }
-//    public void placePiece(){
+
+    public void placePiece(){
+
+    }
+
+    public void checkBoard(){
+        firstRank.set(0, Piece.noPiece());
+        firstRank.set(1, Piece.noPiece());
+        firstRank.set(2, Piece.noPiece());
+        firstRank.set(3, Piece.noPiece());
+        firstRank.set(4, Piece.noPiece());
+        firstRank.set(5, Piece.noPiece());
+        firstRank.set(6, Piece.noPiece());
+        firstRank.set(7, Piece.noPiece());
+
+        secondRank.set(0, Piece.noPiece());
+        secondRank.set(1, Piece.noPiece());
+        secondRank.set(2, Piece.noPiece());
+        secondRank.set(3, Piece.noPiece());
+        secondRank.set(4, Piece.noPiece());
+        secondRank.set(5, Piece.noPiece());
+        secondRank.set(6, Piece.noPiece());
+        secondRank.set(7, Piece.noPiece());
+
+        thirdRank.set(0, Piece.noPiece());
+        thirdRank.set(1, Piece.noPiece());
+        thirdRank.set(2, Piece.noPiece());
+        thirdRank.set(3, Piece.noPiece());
+        thirdRank.set(4, Piece.noPiece());
+        thirdRank.set(5, Piece.noPiece());
+        thirdRank.set(6, Piece.noPiece());
+        thirdRank.set(7, Piece.noPiece());
+
+        fourthRank.set(0, Piece.noPiece());
+        fourthRank.set(1, Piece.noPiece());
+        fourthRank.set(2, Piece.createWhiteKing());
+        fourthRank.set(3, Piece.noPiece());
+        fourthRank.set(4, Piece.noPiece());
+        fourthRank.set(5, Piece.noPiece());
+        fourthRank.set(6, Piece.noPiece());
+        fourthRank.set(7, Piece.noPiece());
+
+        fiveRank.set(0, Piece.noPiece());
+        fiveRank.set(1, Piece.createWhiteRook());
+        fiveRank.set(2, Piece.noPiece());
+        fiveRank.set(3, Piece.noPiece());
+        fiveRank.set(4, Piece.noPiece());
+        fiveRank.set(5, Piece.noPiece());
+        fiveRank.set(6, Piece.noPiece());
+        fiveRank.set(7, Piece.noPiece());
+
+        sixRank.set(0, Piece.noPiece());
+        sixRank.set(1, Piece.createBlackKing());
+        sixRank.set(2, Piece.noPiece());
+        sixRank.set(3, Piece.noPiece());
+        sixRank.set(4, Piece.noPiece());
+        sixRank.set(5, Piece.noPiece());
+        sixRank.set(6, Piece.noPiece());
+        sixRank.set(7, Piece.noPiece());
+
+        seventhRank.set(0, Piece.noPiece());
+        seventhRank.set(1, Piece.noPiece());
+        seventhRank.set(2, Piece.noPiece());
+        seventhRank.set(3, Piece.noPiece());
+        seventhRank.set(4, Piece.noPiece());
+        seventhRank.set(5, Piece.noPiece());
+        seventhRank.set(6, Piece.noPiece());
+        seventhRank.set(7, Piece.noPiece());
+
+        eightRank.set(0, Piece.noPiece());
+        eightRank.set(1, Piece.noPiece());
+        eightRank.set(2, Piece.noPiece());
+        eightRank.set(3, Piece.noPiece());
+        eightRank.set(4, Piece.noPiece());
+        eightRank.set(5, Piece.noPiece());
+        eightRank.set(6, Piece.noPiece());
+        eightRank.set(7, Piece.noPiece());
+    }
+
+//    public int PieceStrength(int strength){
 //
 //    }
 }

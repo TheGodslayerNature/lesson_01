@@ -53,10 +53,28 @@ public class TestBoard {
     }
     @Test
     public void testRetrievePieceByLocation(){
+        board.initialize();
         System.out.println();
         assertEquals('R', board.getPiece("a8").getRepresentation());
+        assertEquals('N', board.getPiece("b8").getRepresentation());
+        assertEquals('B', board.getPiece("c8").getRepresentation());
+        assertEquals('n', board.getPiece("b1").getRepresentation());
 //        assertEquals('c', board.testPositionPiece("c"));
 //        System.out.println(board.testPositionPiece("a"));
-
+    }
+    @Test
+    public void testEmptyBoard(){
+        board.initialize();
+        board.checkBoard();
+        assertEquals(
+                StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine(".K......") +
+                        StringUtil.appendNewLine(".r......") +
+                        StringUtil.appendNewLine("..k.....") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........"),
+                board.printBoardWithoutPieces());
     }
 }
