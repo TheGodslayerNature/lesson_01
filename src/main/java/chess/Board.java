@@ -14,14 +14,14 @@ public class Board {
     private final String dot = "........";
 
     public Board (){
-        this.firstRank = new ArrayList<>();
-        this.secondRank = new  ArrayList<>();
-        this.thirdRank = new ArrayList<>();
-        this.fourthRank = new ArrayList<>();
-        this.fiveRank = new ArrayList<>();
-        this.sixRank = new ArrayList<>();
-        this.seventhRank = new ArrayList<>();
-        this.eightRank = new ArrayList<>();
+        this.firstRank = new ArrayList<>(8);
+        this.secondRank = new  ArrayList<>(8);
+        this.thirdRank = new ArrayList<>(8);
+        this.fourthRank = new ArrayList<>(8);
+        this.fiveRank = new ArrayList<>(8);
+        this.sixRank = new ArrayList<>(8);
+        this.seventhRank = new ArrayList<>(8);
+        this.eightRank = new ArrayList<>(8);
     }
 
     public int getNumberOfAllPieces(){
@@ -100,6 +100,80 @@ public class Board {
         eightRank.add(Piece.createBlackKnight());
         eightRank.add(Piece.createBlackRook());
     }
+    public void emptyBoard(){
+        firstRank.set(0, Piece.noPiece());
+        firstRank.set(1, Piece.noPiece());
+        firstRank.set(2, Piece.noPiece());
+        firstRank.set(3, Piece.noPiece());
+        firstRank.set(4, Piece.noPiece());
+        firstRank.set(5, Piece.noPiece());
+        firstRank.set(6, Piece.noPiece());
+        firstRank.set(7, Piece.noPiece());
+
+        secondRank.set(0, Piece.noPiece());
+        secondRank.set(1, Piece.noPiece());
+        secondRank.set(2, Piece.noPiece());
+        secondRank.set(3, Piece.noPiece());
+        secondRank.set(4, Piece.noPiece());
+        secondRank.set(5, Piece.noPiece());
+        secondRank.set(6, Piece.noPiece());
+        secondRank.set(7, Piece.noPiece());
+
+        thirdRank.set(0, Piece.noPiece());
+        thirdRank.set(1, Piece.noPiece());
+        thirdRank.set(2, Piece.noPiece());
+        thirdRank.set(3, Piece.noPiece());
+        thirdRank.set(4, Piece.noPiece());
+        thirdRank.set(5, Piece.noPiece());
+        thirdRank.set(6, Piece.noPiece());
+        thirdRank.set(7, Piece.noPiece());
+
+        fourthRank.set(0, Piece.noPiece());
+        fourthRank.set(1, Piece.noPiece());
+        fourthRank.set(2, Piece.noPiece());
+        fourthRank.set(3, Piece.noPiece());
+        fourthRank.set(4, Piece.noPiece());
+        fourthRank.set(5, Piece.noPiece());
+        fourthRank.set(6, Piece.noPiece());
+        fourthRank.set(7, Piece.noPiece());
+
+        fiveRank.set(0, Piece.noPiece());
+        fiveRank.set(1, Piece.noPiece());
+        fiveRank.set(2, Piece.noPiece());
+        fiveRank.set(3, Piece.noPiece());
+        fiveRank.set(4, Piece.noPiece());
+        fiveRank.set(5, Piece.noPiece());
+        fiveRank.set(6, Piece.noPiece());
+        fiveRank.set(7, Piece.noPiece());
+
+        sixRank.set(0, Piece.noPiece());
+        sixRank.set(1, Piece.noPiece());
+        sixRank.set(2, Piece.noPiece());
+        sixRank.set(3, Piece.noPiece());
+        sixRank.set(4, Piece.noPiece());
+        sixRank.set(5, Piece.noPiece());
+        sixRank.set(6, Piece.noPiece());
+        sixRank.set(7, Piece.noPiece());
+
+        seventhRank.set(0, Piece.noPiece());
+        seventhRank.set(1, Piece.noPiece());
+        seventhRank.set(2, Piece.noPiece());
+        seventhRank.set(3, Piece.noPiece());
+        seventhRank.set(4, Piece.noPiece());
+        seventhRank.set(5, Piece.noPiece());
+        seventhRank.set(6, Piece.noPiece());
+        seventhRank.set(7, Piece.noPiece());
+
+        eightRank.set(0, Piece.noPiece());
+        eightRank.set(1, Piece.noPiece());
+        eightRank.set(2, Piece.noPiece());
+        eightRank.set(3, Piece.noPiece());
+        eightRank.set(4, Piece.noPiece());
+        eightRank.set(5, Piece.noPiece());
+        eightRank.set(6, Piece.noPiece());
+        eightRank.set(7, Piece.noPiece());
+    }
+
     public String firstRankRepresentation(){
         StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < firstRank.size(); i++) {
@@ -259,82 +333,62 @@ public class Board {
             return eightRank.get(file);
     }
 
-    public void placePiece(){
+    public void placePiece(String position,Piece create){
+        char file = position.charAt(0);
+        char rank = position.charAt(1);
 
+        file -= 'a';
+
+        if (rank == '1'){
+             firstRank.set(file, create);
+        }
+        else if (rank == '2') {
+            secondRank.set(file, create);
+        }
+        else if (rank == '3') {
+            thirdRank.set(file, create);
+        }
+        else if (rank == '4') {
+            fourthRank.set(file, create);
+        }
+        else if (rank == '5') {
+            fiveRank.set(file, create);
+        }
+        else if (rank == '6') {
+            sixRank.set(file, create);
+        }
+        else if (rank == '7') {
+            seventhRank.set(file, create);
+        }
+        eightRank.set(file, create);
     }
 
-    public void checkBoard(){
-        firstRank.set(0, Piece.noPiece());
-        firstRank.set(1, Piece.noPiece());
-        firstRank.set(2, Piece.noPiece());
-        firstRank.set(3, Piece.noPiece());
-        firstRank.set(4, Piece.noPiece());
-        firstRank.set(5, Piece.noPiece());
-        firstRank.set(6, Piece.noPiece());
-        firstRank.set(7, Piece.noPiece());
-
-        secondRank.set(0, Piece.noPiece());
-        secondRank.set(1, Piece.noPiece());
-        secondRank.set(2, Piece.noPiece());
-        secondRank.set(3, Piece.noPiece());
-        secondRank.set(4, Piece.noPiece());
-        secondRank.set(5, Piece.noPiece());
-        secondRank.set(6, Piece.noPiece());
-        secondRank.set(7, Piece.noPiece());
-
-        thirdRank.set(0, Piece.noPiece());
-        thirdRank.set(1, Piece.noPiece());
-        thirdRank.set(2, Piece.noPiece());
-        thirdRank.set(3, Piece.noPiece());
-        thirdRank.set(4, Piece.noPiece());
-        thirdRank.set(5, Piece.noPiece());
-        thirdRank.set(6, Piece.noPiece());
-        thirdRank.set(7, Piece.noPiece());
-
-        fourthRank.set(0, Piece.noPiece());
-        fourthRank.set(1, Piece.noPiece());
-        fourthRank.set(2, Piece.createWhiteKing());
-        fourthRank.set(3, Piece.noPiece());
-        fourthRank.set(4, Piece.noPiece());
-        fourthRank.set(5, Piece.noPiece());
-        fourthRank.set(6, Piece.noPiece());
-        fourthRank.set(7, Piece.noPiece());
-
-        fiveRank.set(0, Piece.noPiece());
-        fiveRank.set(1, Piece.createWhiteRook());
-        fiveRank.set(2, Piece.noPiece());
-        fiveRank.set(3, Piece.noPiece());
-        fiveRank.set(4, Piece.noPiece());
-        fiveRank.set(5, Piece.noPiece());
-        fiveRank.set(6, Piece.noPiece());
-        fiveRank.set(7, Piece.noPiece());
-
-        sixRank.set(0, Piece.noPiece());
-        sixRank.set(1, Piece.createBlackKing());
-        sixRank.set(2, Piece.noPiece());
-        sixRank.set(3, Piece.noPiece());
-        sixRank.set(4, Piece.noPiece());
-        sixRank.set(5, Piece.noPiece());
-        sixRank.set(6, Piece.noPiece());
-        sixRank.set(7, Piece.noPiece());
-
-        seventhRank.set(0, Piece.noPiece());
-        seventhRank.set(1, Piece.noPiece());
-        seventhRank.set(2, Piece.noPiece());
-        seventhRank.set(3, Piece.noPiece());
-        seventhRank.set(4, Piece.noPiece());
-        seventhRank.set(5, Piece.noPiece());
-        seventhRank.set(6, Piece.noPiece());
-        seventhRank.set(7, Piece.noPiece());
-
-        eightRank.set(0, Piece.noPiece());
-        eightRank.set(1, Piece.noPiece());
-        eightRank.set(2, Piece.noPiece());
-        eightRank.set(3, Piece.noPiece());
-        eightRank.set(4, Piece.noPiece());
-        eightRank.set(5, Piece.noPiece());
-        eightRank.set(6, Piece.noPiece());
-        eightRank.set(7, Piece.noPiece());
+    public double pawnStrength(){
+        return 0.5;
+    }
+    public int rookStrength(){
+        return 5;
+    }
+    public double knightStrength(){
+        return 2.5;
+    }
+    public int bishopStrength(){
+        return 3;
+    }
+    public int queenStrength(){
+        return 9;
+    }
+//    public int kingStrength(){
+//
+//    }
+    public double getPawnStrength(){
+        return pawnStrength();
+    }
+    public int getRookStrength(){
+        return rookStrength();
+    }
+    public int getBishopStrength(){
+        return bishopStrength();
     }
 
 //    public int PieceStrength(int strength){

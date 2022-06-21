@@ -65,16 +65,50 @@ public class TestBoard {
     @Test
     public void testEmptyBoard(){
         board.initialize();
-        board.checkBoard();
+        board.emptyBoard();
         assertEquals(
                 StringUtil.appendNewLine("........") +
                         StringUtil.appendNewLine("........") +
-                        StringUtil.appendNewLine(".K......") +
-                        StringUtil.appendNewLine(".r......") +
-                        StringUtil.appendNewLine("..k.....") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
+                        StringUtil.appendNewLine("........") +
                         StringUtil.appendNewLine("........") +
                         StringUtil.appendNewLine("........") +
                         StringUtil.appendNewLine("........"),
                 board.printBoardWithoutPieces());
+    }
+    @Test
+    public void testPieceByLocation(){
+        board.initialize();
+        board.emptyBoard();
+        board.placePiece("b6",Piece.createBlackKing());
+        assertEquals('K', board.getPiece("b6").getRepresentation());
+        board.placePiece("b7",Piece.createBlackKing());
+        assertEquals('K', board.getPiece("b7").getRepresentation());
+    }
+    @Test
+    public void testPieceStrength(){
+        board.initialize();
+        board.emptyBoard();
+
+        board.placePiece("b8",Piece.createBlackKing());
+        assertEquals('K', board.getPiece("b8").getRepresentation());
+
+        board.placePiece("c8",Piece.createBlackRook());
+        assertEquals('R', board.getPiece("c8").getRepresentation());
+        assertEquals(5, board.getRookStrength());
+
+        board.placePiece("a7", Piece.createBlackPawn());
+        assertEquals('P', board.getPiece("a7").getRepresentation());
+        assertEquals(0.5, board.getPawnStrength(), 0.05);
+
+        board.placePiece("c7", Piece.createBlackPawn());
+        assertEquals('P', board.getPiece("a7").getRepresentation());
+        assertEquals(0.5, board.getPawnStrength(), 0.05);
+
+        board.placePiece("d7", Piece.createBlackBishop());
+        assertEquals('B', board.getPiece("d7").getRepresentation());
+        assertEquals(2.5, board.getBishopStrength(), 2.05);
+
     }
 }
