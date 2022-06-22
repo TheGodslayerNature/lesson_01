@@ -3,299 +3,122 @@ import chess.pieces.Piece;
 import java.util.ArrayList;
 import util.StringUtil;
 public class Board {
-    private final ArrayList<Piece> firstRank;
-    private final ArrayList<Piece> secondRank;
-    private final ArrayList<Piece> thirdRank;
-    private final ArrayList<Piece> fourthRank;
-    private final ArrayList<Piece> fiveRank;
-    private final ArrayList<Piece> sixRank;
-    private final ArrayList<Piece> seventhRank;
-    private final ArrayList<Piece> eightRank;
-    private final String dot = "........";
-
+    private final ArrayList<ArrayList<Piece>> allRanks;
     public Board (){
-        this.firstRank = new ArrayList<>(8);
-        this.secondRank = new  ArrayList<>(8);
-        this.thirdRank = new ArrayList<>(8);
-        this.fourthRank = new ArrayList<>(8);
-        this.fiveRank = new ArrayList<>(8);
-        this.sixRank = new ArrayList<>(8);
-        this.seventhRank = new ArrayList<>(8);
-        this.eightRank = new ArrayList<>(8);
+        this.allRanks = new ArrayList<>();
     }
-
     public int getNumberOfAllPieces(){
-        return secondRank.size() + seventhRank.size() + eightRank.size() + firstRank.size();
+        int count = 0;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (allRanks.get(i).get(j).getName() != Piece.Pieces.NO_PIECE)
+                    count++;
+            }
+        }
+        return count;
     }
     public void initialize(){
-        firstRank.add(Piece.createWhiteRook());
-        firstRank.add(Piece.createWhiteKnight());
-        firstRank.add(Piece.createWhiteBishop());
-        firstRank.add(Piece.createWhiteQueen());
-        firstRank.add(Piece.createWhiteKing());
-        firstRank.add(Piece.createWhiteBishop());
-        firstRank.add(Piece.createWhiteKnight());
-        firstRank.add(Piece.createWhiteRook());
+        for (int i = 0; i < 8; i++) {
+            allRanks.add(new ArrayList<>());
+        }
+        allRanks.get(0).add(Piece.createWhiteRook());
+        allRanks.get(0).add(Piece.createWhiteKnight());
+        allRanks.get(0).add(Piece.createWhiteBishop());
+        allRanks.get(0).add(Piece.createWhiteQueen());
+        allRanks.get(0).add(Piece.createWhiteKing());
+        allRanks.get(0).add(Piece.createWhiteBishop());
+        allRanks.get(0).add(Piece.createWhiteKnight());
+        allRanks.get(0).add(Piece.createWhiteRook());
 
-        secondRank.add(Piece.createWhitePawn());
-        secondRank.add(Piece.createWhitePawn());
-        secondRank.add(Piece.createWhitePawn());
-        secondRank.add(Piece.createWhitePawn());
-        secondRank.add(Piece.createWhitePawn());
-        secondRank.add(Piece.createWhitePawn());
-        secondRank.add(Piece.createWhitePawn());
-        secondRank.add(Piece.createWhitePawn());
+        for (int rank = 0; rank < 8 ; rank++) {
+            allRanks.get(1).add(Piece.createWhitePawn());
+            allRanks.get(2).add(Piece.noPiece());
+            allRanks.get(3).add(Piece.noPiece());
+            allRanks.get(4).add(Piece.noPiece());
+            allRanks.get(5).add(Piece.noPiece());
+            allRanks.get(6).add(Piece.createBlackPawn());
+        }
 
-        thirdRank.add(Piece.noPiece());
-        thirdRank.add(Piece.noPiece());
-        thirdRank.add(Piece.noPiece());
-        thirdRank.add(Piece.noPiece());
-        thirdRank.add(Piece.noPiece());
-        thirdRank.add(Piece.noPiece());
-        thirdRank.add(Piece.noPiece());
-        thirdRank.add(Piece.noPiece());
-
-        fourthRank.add(Piece.noPiece());
-        fourthRank.add(Piece.noPiece());
-        fourthRank.add(Piece.noPiece());
-        fourthRank.add(Piece.noPiece());
-        fourthRank.add(Piece.noPiece());
-        fourthRank.add(Piece.noPiece());
-        fourthRank.add(Piece.noPiece());
-        fourthRank.add(Piece.noPiece());
-
-        fiveRank.add(Piece.noPiece());
-        fiveRank.add(Piece.noPiece());
-        fiveRank.add(Piece.noPiece());
-        fiveRank.add(Piece.noPiece());
-        fiveRank.add(Piece.noPiece());
-        fiveRank.add(Piece.noPiece());
-        fiveRank.add(Piece.noPiece());
-        fiveRank.add(Piece.noPiece());
-
-        sixRank.add(Piece.noPiece());
-        sixRank.add(Piece.noPiece());
-        sixRank.add(Piece.noPiece());
-        sixRank.add(Piece.noPiece());
-        sixRank.add(Piece.noPiece());
-        sixRank.add(Piece.noPiece());
-        sixRank.add(Piece.noPiece());
-        sixRank.add(Piece.noPiece());
-
-        seventhRank.add(Piece.createBlackPawn());
-        seventhRank.add(Piece.createBlackPawn());
-        seventhRank.add(Piece.createBlackPawn());
-        seventhRank.add(Piece.createBlackPawn());
-        seventhRank.add(Piece.createBlackPawn());
-        seventhRank.add(Piece.createBlackPawn());
-        seventhRank.add(Piece.createBlackPawn());
-        seventhRank.add(Piece.createBlackPawn());
-
-        eightRank.add(Piece.createBlackRook());
-        eightRank.add(Piece.createBlackKnight());
-        eightRank.add(Piece.createBlackBishop());
-        eightRank.add(Piece.createBlackQueen());
-        eightRank.add(Piece.createBlackKing());
-        eightRank.add(Piece.createBlackBishop());
-        eightRank.add(Piece.createBlackKnight());
-        eightRank.add(Piece.createBlackRook());
+        allRanks.get(7).add(Piece.createBlackRook());
+        allRanks.get(7).add(Piece.createBlackKnight());
+        allRanks.get(7).add(Piece.createBlackBishop());
+        allRanks.get(7).add(Piece.createBlackQueen());
+        allRanks.get(7).add(Piece.createBlackKing());
+        allRanks.get(7).add(Piece.createBlackBishop());
+        allRanks.get(7).add(Piece.createBlackKnight());
+        allRanks.get(7).add(Piece.createBlackRook());
     }
+    public String ranksRepresentation(){
+        StringBuilder buffer = new StringBuilder();
+        String jump = "";
+        for (int i = 7; i > 0 ; i--) {
+            buffer.append(allRanks.get(i).get(i).getRepresentation() + jump);
+            for (int j = 0; j < allRanks.size(); j++) {
+                buffer.append(allRanks.get(i).get(j).getRepresentation());
+                if (allRanks.get(i) == allRanks.get(7)){
+                    jump = StringUtil.appendNewLine("");
+                }
+            }
+        }
+        return buffer.toString();
+    }
+
     public void emptyBoard(){
-        firstRank.set(0, Piece.noPiece());
-        firstRank.set(1, Piece.noPiece());
-        firstRank.set(2, Piece.noPiece());
-        firstRank.set(3, Piece.noPiece());
-        firstRank.set(4, Piece.noPiece());
-        firstRank.set(5, Piece.noPiece());
-        firstRank.set(6, Piece.noPiece());
-        firstRank.set(7, Piece.noPiece());
-
-        secondRank.set(0, Piece.noPiece());
-        secondRank.set(1, Piece.noPiece());
-        secondRank.set(2, Piece.noPiece());
-        secondRank.set(3, Piece.noPiece());
-        secondRank.set(4, Piece.noPiece());
-        secondRank.set(5, Piece.noPiece());
-        secondRank.set(6, Piece.noPiece());
-        secondRank.set(7, Piece.noPiece());
-
-        thirdRank.set(0, Piece.noPiece());
-        thirdRank.set(1, Piece.noPiece());
-        thirdRank.set(2, Piece.noPiece());
-        thirdRank.set(3, Piece.noPiece());
-        thirdRank.set(4, Piece.noPiece());
-        thirdRank.set(5, Piece.noPiece());
-        thirdRank.set(6, Piece.noPiece());
-        thirdRank.set(7, Piece.noPiece());
-
-        fourthRank.set(0, Piece.noPiece());
-        fourthRank.set(1, Piece.noPiece());
-        fourthRank.set(2, Piece.noPiece());
-        fourthRank.set(3, Piece.noPiece());
-        fourthRank.set(4, Piece.noPiece());
-        fourthRank.set(5, Piece.noPiece());
-        fourthRank.set(6, Piece.noPiece());
-        fourthRank.set(7, Piece.noPiece());
-
-        fiveRank.set(0, Piece.noPiece());
-        fiveRank.set(1, Piece.noPiece());
-        fiveRank.set(2, Piece.noPiece());
-        fiveRank.set(3, Piece.noPiece());
-        fiveRank.set(4, Piece.noPiece());
-        fiveRank.set(5, Piece.noPiece());
-        fiveRank.set(6, Piece.noPiece());
-        fiveRank.set(7, Piece.noPiece());
-
-        sixRank.set(0, Piece.noPiece());
-        sixRank.set(1, Piece.noPiece());
-        sixRank.set(2, Piece.noPiece());
-        sixRank.set(3, Piece.noPiece());
-        sixRank.set(4, Piece.noPiece());
-        sixRank.set(5, Piece.noPiece());
-        sixRank.set(6, Piece.noPiece());
-        sixRank.set(7, Piece.noPiece());
-
-        seventhRank.set(0, Piece.noPiece());
-        seventhRank.set(1, Piece.noPiece());
-        seventhRank.set(2, Piece.noPiece());
-        seventhRank.set(3, Piece.noPiece());
-        seventhRank.set(4, Piece.noPiece());
-        seventhRank.set(5, Piece.noPiece());
-        seventhRank.set(6, Piece.noPiece());
-        seventhRank.set(7, Piece.noPiece());
-
-        eightRank.set(0, Piece.noPiece());
-        eightRank.set(1, Piece.noPiece());
-        eightRank.set(2, Piece.noPiece());
-        eightRank.set(3, Piece.noPiece());
-        eightRank.set(4, Piece.noPiece());
-        eightRank.set(5, Piece.noPiece());
-        eightRank.set(6, Piece.noPiece());
-        eightRank.set(7, Piece.noPiece());
-    }
-
-    public String firstRankRepresentation(){
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < firstRank.size(); i++) {
-            buffer.append(firstRank.get(i).getRepresentation());
+        for (int rank = 0; rank < 8; rank++) {
+            for (int i = 0; i < allRanks.size(); i++) {
+                allRanks.get(i).set(rank, Piece.noPiece());
+            }
         }
-        return buffer.toString();
-    }
-    public String secondRankRepresentation(){
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < secondRank.size(); i++) {
-            buffer.append(secondRank.get(i).getRepresentation());
-        }
-        return buffer.toString();
-    }
-    public String thirdRankRepresentation(){
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < thirdRank.size(); i++) {
-            buffer.append(thirdRank.get(i).getRepresentation());
-        }
-        return buffer.toString();
-    }
-    public String fourthRankRepresentation(){
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < fourthRank.size(); i++) {
-            buffer.append(fourthRank.get(i).getRepresentation());
-        }
-        return buffer.toString();
-    }
-    public String fiveRankRepresentation(){
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < fiveRank.size(); i++) {
-            buffer.append(fiveRank.get(i).getRepresentation());
-        }
-        return buffer.toString();
-    }
-    public String sixRankRepresentation(){
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < sixRank.size(); i++) {
-            buffer.append(sixRank.get(i).getRepresentation());
-        }
-        return buffer.toString();
-    }
-    public String seventhRankRepresentation(){
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < seventhRank.size(); i++) {
-            buffer.append(seventhRank.get(i).getRepresentation());
-        }
-        return buffer.toString();
-    }
-    public String rank8Representation(){
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < eightRank.size() ; i++) {
-            buffer.append(eightRank.get(i).getRepresentation());
-        }
-        return buffer.toString();
-    }
-    public String emptyRepresentation(){
-        return dot;
     }
     public String anotherPrintBoardSolution(){
         StringBuilder buffer = new StringBuilder();
-        buffer.append(StringUtil.appendNewLine(rank8Representation()));
-        buffer.append(StringUtil.appendNewLine(seventhRankRepresentation()));
-        buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
-        buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
-        buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
-        buffer.append(StringUtil.appendNewLine(emptyRepresentation()));
-        buffer.append(StringUtil.appendNewLine(secondRankRepresentation()));
-        buffer.append(StringUtil.appendNewLine(firstRankRepresentation()));
+        buffer.append(StringUtil.appendNewLine(ranksRepresentation()));
         return buffer.toString();
     }
     public String printBoardWithoutPieces(){
         StringBuilder buffer = new StringBuilder();
-        buffer.append(StringUtil.appendNewLine(rank8Representation()));
-        buffer.append(StringUtil.appendNewLine(seventhRankRepresentation()));
-        buffer.append(StringUtil.appendNewLine(sixRankRepresentation()));
-        buffer.append(StringUtil.appendNewLine(fiveRankRepresentation()));
-        buffer.append(StringUtil.appendNewLine(fourthRankRepresentation()));
-        buffer.append(StringUtil.appendNewLine(thirdRankRepresentation()));
-        buffer.append(StringUtil.appendNewLine(secondRankRepresentation()));
-        buffer.append(StringUtil.appendNewLine(firstRankRepresentation()));
+
         return buffer.toString();
     }
 
     public int pieceCount(char representation) {
         int count = 0;
-        for (Piece knight: firstRank){
+        for (Piece knight: allRanks.get(0)){
             if (knight.getRepresentation() == representation){
                 count++;
             }
         }
-        for (Piece piece: secondRank){
+        for (Piece piece: allRanks.get(1)){
             if (piece.getRepresentation() == representation){
                 count++;
             }
         }
-        for (Piece piece: thirdRank){
+        for (Piece piece: allRanks.get(2)){
             if (piece.getRepresentation() == representation){
                 count++;
             }
         }
-        for (Piece piece: fourthRank){
+        for (Piece piece: allRanks.get(3)){
             if (piece.getRepresentation() == representation){
                 count++;
             }
         }
-        for (Piece piece: fiveRank){
+        for (Piece piece: allRanks.get(4)){
             if (piece.getRepresentation() == representation){
                 count++;
             }
         }
-        for (Piece piece: sixRank){
+        for (Piece piece: allRanks.get(5)){
             if (piece.getRepresentation() == representation){
                 count++;
             }
         }
-        for (Piece piece: seventhRank){
+        for (Piece piece: allRanks.get(6)){
             if (piece.getRepresentation() == representation){
                 count++;
             }
         }
-        for (Piece piece: eightRank){
+        for (Piece piece: allRanks.get(7)){
             if (piece.getRepresentation() == representation){
                 count++;
             }
@@ -309,28 +132,28 @@ public class Board {
         file -= 'a';
 
         if (rank == '1'){
-            return firstRank.get(file);
+            return allRanks.get(0).get(file);
         }
         else if (rank == '2'){
-            return secondRank.get(file);
+            return allRanks.get(1).get(file);
         }
         else if (rank == '3'){
-            return thirdRank.get(file);
+            return allRanks.get(2).get(file);
         }
         else if (rank == '4'){
-            return fourthRank.get(file);
+            return allRanks.get(3).get(file);
         }
         else if (rank == '5') {
-            return fiveRank.get(file);
+            return allRanks.get(4).get(file);
         }
         else if (rank == '6'){
-            return sixRank.get(file);
+            return allRanks.get(5).get(file);
         }
         else if (rank == '7'){
-            return seventhRank.get(file);
+            return allRanks.get(6).get(file);
         }
         else
-            return eightRank.get(file);
+            return allRanks.get(7).get(file);
     }
 
     public void placePiece(String position,Piece create){
@@ -340,27 +163,27 @@ public class Board {
         file -= 'a';
 
         if (rank == '1'){
-             firstRank.set(file, create);
+             allRanks.get(0).set(file, create);
         }
         else if (rank == '2') {
-            secondRank.set(file, create);
+            allRanks.get(1).set(file, create);
         }
         else if (rank == '3') {
-            thirdRank.set(file, create);
+            allRanks.get(2).set(file, create);
         }
         else if (rank == '4') {
-            fourthRank.set(file, create);
+            allRanks.get(3).set(file, create);
         }
         else if (rank == '5') {
-            fiveRank.set(file, create);
+            allRanks.get(4).set(file, create);
         }
         else if (rank == '6') {
-            sixRank.set(file, create);
+            allRanks.get(5).set(file, create);
         }
         else if (rank == '7') {
-            seventhRank.set(file, create);
+            allRanks.get(6).set(file, create);
         }
-        eightRank.set(file, create);
+        allRanks.get(7).set(file, create);
     }
 
     public double pawnStrength(){
