@@ -55,17 +55,21 @@ public class Board {
         allRanks.get(7).set(6,Piece.createBlackKnight());
         allRanks.get(7).set(7,Piece.createBlackRook());
     }
+    public void cleanBoard(){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                allRanks.get(i).set(j,Piece.noPiece());
+            }
+        }
+    }
     public String ranksRepresentation(){
         StringBuilder buffer = new StringBuilder();
-        String jump = "";
+        String jump = StringUtil.appendNewLine("");
         for (int i = 7; i >= 0 ; i--) {
-            buffer.append(jump + allRanks.get(i).get(i).getRepresentation());
-            for (int j = 1; j < allRanks.size(); j++) {
+            for (int j = 0; j < allRanks.size(); j++) {
                 buffer.append(allRanks.get(i).get(j).getRepresentation());
-                if (allRanks.get(i) == allRanks.get(7)){
-                    jump = StringUtil.appendNewLine("");
-                }
             }
+            buffer.append(jump);
         }
         return buffer.toString();
     }
@@ -79,7 +83,6 @@ public class Board {
     public int pieceCountTurboVersion(char representation){
         int count = 0;
         for (int i = 0; i < 8; i++) {
-            allRanks.get(i).get(i);
             for (Piece piece: allRanks.get(i))
                 if (piece.getRepresentation() == representation){
                     count++;
@@ -105,18 +108,40 @@ public class Board {
 
         file -= 'a';
 
-        rank -= ' ';
+        rank -= '1';
 
         allRanks.get(rank).set(file, allocate);
     }
-
-    public double basicStrength(){
-        double someStrength = 0;
-        double queenStrength = 9 + someStrength;
-        double rookStrength = 5 + someStrength;
-        double bishopStrength = 3 + someStrength;
-        double knightStrength = 2.5 + someStrength;
-        double pawnStrength = 1 + someStrength;
-        return someStrength;
+    public double queenStrength(){
+        return 9;
+    }
+    public double rookStrength(){
+        return 5;
+    }
+    public double bishopStrength(){
+        return 3;
+    }
+    public double knightStrength(){
+        return 2.5;
+    }
+    public double pawnStrength(){
+        return 1;
+    }
+    public double countBlackStrength(){
+        double count = 0;
+            count += pieceCountTurboVersion('P') * pawnStrength();
+            count += pieceCountTurboVersion('R') * rookStrength();
+            count += pieceCountTurboVersion('B') * bishopStrength();
+            count += pieceCountTurboVersion('Q') * queenStrength();
+            return count;
+    }
+    public double countWhiteStrength(){
+        double count = 0;
+        count += pieceCountTurboVersion('p') * pawnStrength();
+        count += pieceCountTurboVersion('r') * rookStrength();
+        count += pieceCountTurboVersion('b') * bishopStrength();
+        count += pieceCountTurboVersion('q') * queenStrength();
+        count += pieceCountTurboVersion('n') * knightStrength();
+        return count;
     }
 }

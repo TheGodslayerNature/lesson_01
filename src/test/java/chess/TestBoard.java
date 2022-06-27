@@ -82,12 +82,72 @@ public class TestBoard {
         assertEquals('K', board.getPiece("b7").getRepresentation());
     }
     @Test
-    public void testPieceStrength(){
+    public void testBlackPieceStrength(){
         board.initialize();
+        board.cleanBoard();
+        board.placePieceRemastered("b8",Piece.createBlackRook());
+        assertEquals('R', board.getPiece("b8").getRepresentation());
+        assertEquals(5, board.rookStrength(), 0.05);
 
-        board.placePieceRemastered("c8",Piece.createBlackRook());
-        assertEquals('R', board.getPiece("c8").getRepresentation());
-        assertEquals(5, board.basicStrength(), 0.05);
+        board.placePieceRemastered("e6", Piece.createBlackQueen());
+        assertEquals('Q', board.getPiece("e6").getRepresentation());
+        assertEquals(9, board.queenStrength(), 0.90);
 
+        board.placePieceRemastered("a7", Piece.createBlackPawn());
+        assertEquals('P', board.getPiece("a7").getRepresentation());
+        assertEquals(1, board.pawnStrength(), 0.05);
+
+        board.placePieceRemastered("b6", Piece.createBlackPawn());
+        assertEquals('P', board.getPiece("b6").getRepresentation());
+        assertEquals(1, board.pawnStrength(), 0.05);
+
+        board.placePieceRemastered("c7", Piece.createBlackPawn());
+        assertEquals('P', board.getPiece("c7").getRepresentation());
+        assertEquals(1, board.pawnStrength(), 0.05);
+
+        board.placePieceRemastered("d7", Piece.createBlackBishop());
+        assertEquals('B', board.getPiece("d7").getRepresentation());
+        assertEquals(3, board.bishopStrength(), 0.30);
+
+        board.countBlackStrength();
+        System.out.println(board.countBlackStrength());
+    }
+    @Test
+    public void testWhitePieceStrength(){
+        board.initialize();
+        board.cleanBoard();
+        board.placePieceRemastered("f4", Piece.createWhiteKnight());
+        assertEquals('n', board.getPiece("f4").getRepresentation());
+        assertEquals(2.5, board.knightStrength(), 0.25);
+
+        board.placePieceRemastered("g4", Piece.createWhiteQueen());
+        assertEquals('q', board.getPiece("g4").getRepresentation());
+        assertEquals(9, board.queenStrength(), 0.90);
+
+        board.placePieceRemastered("f3", Piece.createWhitePawn());
+        assertEquals('p', board.getPiece("f3").getRepresentation());
+        assertEquals(1, board.pawnStrength(), 0.05);
+
+        board.placePieceRemastered("h3", Piece.createWhitePawn());
+        assertEquals('p', board.getPiece("h3").getRepresentation());
+        assertEquals(1, board.pawnStrength(), 0.05);
+
+        board.placePieceRemastered("f2", Piece.createWhitePawn());
+        assertEquals('p', board.getPiece("f2").getRepresentation());
+        assertEquals(1, board.pawnStrength(), 0.05);
+
+        board.placePieceRemastered("g2", Piece.createWhitePawn());
+        assertEquals('p', board.getPiece("g2").getRepresentation());
+        assertEquals(1, board.pawnStrength(), 0.05);
+
+        board.placePieceRemastered("e1", Piece.createWhiteRook());
+        assertEquals('r', board.getPiece("e1").getRepresentation());
+        assertEquals(5, board.rookStrength(), 0.5);
+
+        board.placePieceRemastered("f1", Piece.createWhiteKing());
+        assertEquals('k', board.getPiece("f1").getRepresentation());
+
+        board.countWhiteStrength();
+        System.out.println(board.countWhiteStrength());
     }
 }
