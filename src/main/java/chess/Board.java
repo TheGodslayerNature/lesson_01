@@ -129,7 +129,7 @@ public class Board {
     }
     public double countBlackStrength(){
         double count = 0;
-            count += pieceCountTurboVersion('P') * pawnStrength();
+            count += whitePawnStrength('P');
             count += pieceCountTurboVersion('R') * rookStrength();
             count += pieceCountTurboVersion('B') * bishopStrength();
             count += pieceCountTurboVersion('Q') * queenStrength();
@@ -137,11 +137,27 @@ public class Board {
     }
     public double countWhiteStrength(){
         double count = 0;
-        count += pieceCountTurboVersion('p') * pawnStrength();
+        count += whitePawnStrength('p');
         count += pieceCountTurboVersion('r') * rookStrength();
         count += pieceCountTurboVersion('b') * bishopStrength();
         count += pieceCountTurboVersion('q') * queenStrength();
         count += pieceCountTurboVersion('n') * knightStrength();
         return count;
+    }
+    public double whitePawnStrength(char takeStrengthPiece){
+        int count = 0;
+        double strength = 0;
+        for (int i = 0; i <= 7 ; i++) {
+            for (int j = 0; j <= 7 ; j++) {
+                if (allRanks.get(j).get(i).getRepresentation() == takeStrengthPiece)
+                    count += 1;
+            }
+            if (count > 1)
+                strength  += count  * 0.5;
+
+            else strength += count;
+            count = 0;
+        }
+        return strength;
     }
 }

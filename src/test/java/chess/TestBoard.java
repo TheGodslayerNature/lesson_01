@@ -144,8 +144,23 @@ public class TestBoard {
         assertEquals('r', board.getPiece("e1").getRepresentation());
         assertEquals(5, board.rookStrength(), 0.5);
 
-        board.placePieceRemastered("f1", Piece.createWhiteKing());
-        assertEquals('k', board.getPiece("f1").getRepresentation());
+
+        board.countWhiteStrength();
+        System.out.println(board.countWhiteStrength());
+        System.out.println(board.printBoard());
+    }
+    @Test
+    public void testFileStrength(){
+
+        board.placePieceRemastered("f3", Piece.createWhitePawn());
+        assertEquals('p', board.getPiece("f3").getRepresentation());
+
+        board.placePieceRemastered("f2", Piece.createWhitePawn());
+        assertEquals('p', board.getPiece("f2").getRepresentation());
+
+        board.placePieceRemastered("g2", Piece.createWhitePawn());
+        assertEquals('p', board.getPiece("g2").getRepresentation());
+        assertEquals(2, board.countWhiteStrength(), 0.05);
 
         board.countWhiteStrength();
         System.out.println(board.countWhiteStrength());
