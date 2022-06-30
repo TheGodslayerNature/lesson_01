@@ -1,6 +1,7 @@
 package chess;
 import chess.pieces.Piece;
 import java.util.ArrayList;
+
 import util.StringUtil;
 public class Board {
     private final ArrayList<ArrayList<Piece>> allRanks;
@@ -15,8 +16,8 @@ public class Board {
                 allRanks.get(i).add(Piece.noPiece());
             }
         }
-
     }
+
     public int getNumberOfAllPieces(){
         int count = 0;
         for (int i = 0; i < 8; i++) {
@@ -64,19 +65,18 @@ public class Board {
     }
     public String ranksRepresentation(){
         StringBuilder buffer = new StringBuilder();
-        String jump = StringUtil.appendNewLine("");
         for (int i = 7; i >= 0 ; i--) {
             for (int j = 0; j < allRanks.size(); j++) {
                 buffer.append(allRanks.get(i).get(j).getRepresentation());
             }
-            buffer.append(jump);
+            buffer.append(StringUtil.appendNewLine(""));
         }
         return buffer.toString();
     }
 
     public String printBoard(){
         StringBuilder buffer = new StringBuilder();
-        buffer.append(StringUtil.appendNewLine(ranksRepresentation()));
+        buffer.append((ranksRepresentation()));
         return buffer.toString();
     }
 
@@ -144,12 +144,12 @@ public class Board {
         count += pieceCountTurboVersion('n') * knightStrength();
         return count;
     }
-    public double whitePawnStrength(char takeStrengthPiece){
+    public double whitePawnStrength(char compare){
         int count = 0;
         double strength = 0;
         for (int i = 0; i <= 7 ; i++) {
             for (int j = 0; j <= 7 ; j++) {
-                if (allRanks.get(j).get(i).getRepresentation() == takeStrengthPiece)
+                if (allRanks.get(j).get(i).getRepresentation() == compare)
                     count += 1;
             }
             if (count > 1)
@@ -159,5 +159,19 @@ public class Board {
             count = 0;
         }
         return strength;
+    }
+
+    public ArrayList<Piece> whitePieces = new ArrayList<>();
+    public ArrayList<Piece> blackPieces = new ArrayList<>();
+    public void allList(){
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j < allRanks.size(); j++) {
+                if (allRanks.get(i).get(j).isWhite()){
+                    whitePieces.add(allRanks.get(i).get(j));
+                } else if (allRanks.get(i).get(j).isBlack()) {
+                    blackPieces.add(allRanks.get(i).get(j));
+                }
+            }
+        }
     }
 }

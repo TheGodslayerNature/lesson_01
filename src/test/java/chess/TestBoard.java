@@ -1,10 +1,12 @@
 package chess;
 
-import chess.Board;
 import chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 import util.StringUtil;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 public class TestBoard {
@@ -87,27 +89,23 @@ public class TestBoard {
         board.cleanBoard();
         board.placePieceRemastered("b8",Piece.createBlackRook());
         assertEquals('R', board.getPiece("b8").getRepresentation());
-        assertEquals(5, board.rookStrength(), 0.05);
 
         board.placePieceRemastered("e6", Piece.createBlackQueen());
         assertEquals('Q', board.getPiece("e6").getRepresentation());
-        assertEquals(9, board.queenStrength(), 0.90);
 
         board.placePieceRemastered("a7", Piece.createBlackPawn());
         assertEquals('P', board.getPiece("a7").getRepresentation());
-        assertEquals(1, board.pawnStrength(), 0.05);
 
         board.placePieceRemastered("b6", Piece.createBlackPawn());
         assertEquals('P', board.getPiece("b6").getRepresentation());
-        assertEquals(1, board.pawnStrength(), 0.05);
 
         board.placePieceRemastered("c7", Piece.createBlackPawn());
         assertEquals('P', board.getPiece("c7").getRepresentation());
-        assertEquals(1, board.pawnStrength(), 0.05);
 
         board.placePieceRemastered("d7", Piece.createBlackBishop());
         assertEquals('B', board.getPiece("d7").getRepresentation());
-        assertEquals(3, board.bishopStrength(), 0.30);
+
+        assertEquals(20, board.countBlackStrength(), 2.00);
 
         board.countBlackStrength();
         System.out.println(board.countBlackStrength());
@@ -118,51 +116,41 @@ public class TestBoard {
         board.cleanBoard();
         board.placePieceRemastered("f4", Piece.createWhiteKnight());
         assertEquals('n', board.getPiece("f4").getRepresentation());
-        assertEquals(2.5, board.knightStrength(), 0.25);
 
         board.placePieceRemastered("g4", Piece.createWhiteQueen());
         assertEquals('q', board.getPiece("g4").getRepresentation());
-        assertEquals(9, board.queenStrength(), 0.90);
 
         board.placePieceRemastered("f3", Piece.createWhitePawn());
         assertEquals('p', board.getPiece("f3").getRepresentation());
-        assertEquals(1, board.pawnStrength(), 0.05);
 
         board.placePieceRemastered("h3", Piece.createWhitePawn());
         assertEquals('p', board.getPiece("h3").getRepresentation());
-        assertEquals(1, board.pawnStrength(), 0.05);
 
         board.placePieceRemastered("f2", Piece.createWhitePawn());
         assertEquals('p', board.getPiece("f2").getRepresentation());
-        assertEquals(1, board.pawnStrength(), 0.05);
 
         board.placePieceRemastered("g2", Piece.createWhitePawn());
         assertEquals('p', board.getPiece("g2").getRepresentation());
-        assertEquals(1, board.pawnStrength(), 0.05);
 
         board.placePieceRemastered("e1", Piece.createWhiteRook());
         assertEquals('r', board.getPiece("e1").getRepresentation());
-        assertEquals(5, board.rookStrength(), 0.5);
 
+        assertEquals(19.5, board.countWhiteStrength(), 19.5);
 
         board.countWhiteStrength();
         System.out.println(board.countWhiteStrength());
         System.out.println(board.printBoard());
+
+        Piece queen = Piece.createBlackQueen();
+        Piece pawn = Piece.createBlackPawn();
+
+        queen.compareTo(pawn);
     }
     @Test
-    public void testFileStrength(){
-
-        board.placePieceRemastered("f3", Piece.createWhitePawn());
-        assertEquals('p', board.getPiece("f3").getRepresentation());
-
-        board.placePieceRemastered("f2", Piece.createWhitePawn());
-        assertEquals('p', board.getPiece("f2").getRepresentation());
-
-        board.placePieceRemastered("g2", Piece.createWhitePawn());
-        assertEquals('p', board.getPiece("g2").getRepresentation());
-        assertEquals(2, board.countWhiteStrength(), 0.05);
-
-        board.countWhiteStrength();
-        System.out.println(board.countWhiteStrength());
+    public void testPieceOrderByStrength(){
+        board.placePieceRemastered("a1", Piece.createWhitePawn());
+        assertEquals('p', Piece.createWhitePawn().getRepresentation());
+        board.allList();
+        System.out.println(board.whitePieces);
     }
 }
